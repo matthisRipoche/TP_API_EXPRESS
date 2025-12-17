@@ -28,3 +28,9 @@
     </ul>
   </nav>
 </header>
+
+<% if (user) { %>
+  <div class="user-info">
+    <p>Bienvenue <%= user.username %></p>
+  </div>
+<% } %>

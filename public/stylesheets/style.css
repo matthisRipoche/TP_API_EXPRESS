@@ -6,6 +6,7 @@
   background: rgba(29, 17, 53, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(185, 116, 255, 0.2);
+  position: relative;
 }
 .site-header .site-title {
   font-family: "Orbitron", sans-serif;
@@ -55,6 +56,22 @@
   background: #b974ff;
   color: #e6e2ff;
   cursor: pointer;
+}
+
+.user-info {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 50px;
+  left: 50px;
+  background: rgba(185, 116, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #b974ff;
+  color: #e6e2ff;
+  font-weight: 600;
+  z-index: 9999;
 }
 
 /* Variables */

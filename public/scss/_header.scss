@@ -6,6 +6,7 @@
     background: rgba(29, 17, 53, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #b974ff33;
+    position: relative; // nécessaire pour positionner l'enfant
 
     .site-title {
         font-family: "Orbitron", sans-serif;
@@ -45,7 +46,6 @@
 
             .btn-logout {
                 font-family: "Orbitron", sans-serif;
-
                 color: #e6e2ff;
                 text-decoration: none;
                 font-weight: 600;
@@ -63,4 +63,19 @@
             }
         }
     }
+}
+.user-info {
+    position: fixed; // reste visible à l’écran
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 50px; // espace du bas
+    left: 50px; // centré horizontalement
+    background: #b974ff33;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #b974ff;
+    color: #e6e2ff;
+    font-weight: 600;
+    z-index: 9999;
 }
