@@ -1,0 +1,41 @@
+.landing:has(.container-404) {
+    justify-content: center;
+    align-items: center;
+}
+
+.container-404 {
+    text-align: center;
+    padding: 2rem;
+
+    h1 {
+        font-size: 6rem;
+        margin: 0;
+        color: #b974ff;
+    }
+
+    h2 {
+        margin: 0.5rem 0 1rem;
+        font-size: 1.5rem;
+    }
+
+    p {
+        opacity: 0.8;
+        margin-bottom: 2rem;
+    }
+
+    a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        background: #b974ff;
+        color: #0f172a;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    a:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+}
