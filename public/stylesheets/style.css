@@ -1,0 +1,195 @@
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(29, 17, 53, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(185, 116, 255, 0.2);
+}
+.site-header .site-title {
+  font-family: "Orbitron", sans-serif;
+  color: #b974ff;
+  font-size: 2rem;
+  text-shadow: 0 0 10px #b974ff;
+  margin: 0;
+}
+.site-header .site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.site-header .site-nav ul li a {
+  color: #e6e2ff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.site-header .site-nav ul li a:hover {
+  background: rgba(185, 116, 255, 0.2);
+  color: #b974ff;
+}
+.site-header .site-nav ul .btn-logout {
+  background: #b974ff;
+  color: #0d0b14;
+}
+.site-header .site-nav ul .btn-logout:hover {
+  background: #d9a7ff;
+}
+
+body.clients-page {
+  background: #0d0b14;
+  color: #e6e2ff;
+  font-family: "Orbitron", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #b974ff;
+  text-shadow: 0 0 10px #b974ff;
+  margin-bottom: 2rem;
+}
+
+.clients-container {
+  padding: 2rem;
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.clients-table th,
+.clients-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+.clients-table th {
+  background: rgba(185, 116, 255, 0.3);
+  color: #fff;
+  font-weight: 600;
+}
+.clients-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+.clients-table tr:hover {
+  background: rgba(185, 116, 255, 0.1);
+}
+
+.btn-detail {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #b974ff;
+  color: #0d0b14;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.btn-detail:hover {
+  background: #d9a7ff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Orbitron", sans-serif;
+  background: #0d0b14;
+  color: #e6e2ff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.landing .hero {
+  height: 100vh;
+  background: radial-gradient(circle at center, #3f1d85, #0d0b14 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+.landing .hero .hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #b974ff;
+  text-shadow: 0 0 15px #b974ff;
+}
+.landing .hero .hero-subtitle {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #d9a7ff;
+}
+.landing .hero .hero-text {
+  max-width: 600px;
+  margin: auto;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+.landing .hero .hero-buttons {
+  margin-top: 2rem;
+}
+.landing .hero .hero-buttons a {
+  padding: 12px 22px;
+  margin: 0 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+.landing .hero .hero-buttons .btn-primary {
+  background: #b974ff;
+  color: #0d0b14;
+  box-shadow: 0 0 15px #b974ff;
+}
+.landing .hero .hero-buttons .btn-primary:hover {
+  background: #d9a7ff;
+}
+.landing .hero .hero-buttons .btn-secondary {
+  border: 2px solid #b974ff;
+  color: #b974ff;
+}
+.landing .hero .hero-buttons .btn-secondary:hover {
+  background: rgba(185, 116, 255, 0.2);
+}
+.landing .features {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.landing .features .feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(185, 116, 255, 0.2666666667);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 260px;
+  text-align: center;
+  transition: 0.25s ease;
+}
+.landing .features .feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(185, 116, 255, 0.4);
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/*# sourceMappingURL=style.css.map */

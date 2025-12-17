@@ -1,0 +1,9 @@
+services:
+  api:
+    build: .
+    container_name: express_api
+    restart: always
+    env_file:
+      - .env
+    expose:
+      - "3000"

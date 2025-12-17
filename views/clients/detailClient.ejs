@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <%- include('../parts/head') %>
+  </head>
+  <body class="client-detail-page">
+    <%- include('../parts/header') %>
+
+    <main class="client-detail">
+      <h1>Détail du client <%= client.name %></h1>
+      <p><strong>Email:</strong> <%= client.email %></p>
+      <p><strong>Balance:</strong> <%= client.balance.toLocaleString() %> €</p>
+      <p><strong>Type de compte:</strong> <%= client.accountType %></p>
+      <p><strong>Dernier login:</strong> <%= client.lastLogin %></p>
+      <p><strong>Status:</strong> <%= client.status %></p>
+    </main>
+
+    <%- include('../parts/footer') %>
+  </body>
+</html>

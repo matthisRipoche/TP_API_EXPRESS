@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include('../parts/head') %>
+</head>
+<body class="clients-page">
+  <%- include('../parts/header') %>
+
+  <main>
+    <div class="clients-container">
+      <table class="clients-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Balance (€)</th>
+            <th>Type de compte</th>
+            <th>Dernier login</th>
+            <th>Status</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% clients.forEach(client => { %>
+            <tr>
+              <td><%= client.id %></td>
+              <td><%= client.name %></td>
+              <td><%= client.email %></td>
+              <td><%= client.balance.toLocaleString() %></td>
+              <td><%= client.accountType %></td>
+              <td><%= client.lastLogin %></td>
+              <td><%= client.status %></td>
+              <td><a href="/clients/<%= client.id %>" class="btn-detail">Voir</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <%- include('../parts/footer') %>
+</body>
+</html>

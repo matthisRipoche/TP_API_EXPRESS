@@ -1,0 +1,23 @@
+<header class="site-header">
+  <div class="header-left">
+    <h1 class="site-title">NEOCASH BANK 🔮</h1>
+  </div>
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/clients">Clients</a></li>
+      <li><a href="/dab/100">DAB</a></li>
+      <li><a href="/download">Téléchargement</a></li>
+      <li><a href="/about">À propos</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/erreur-speciale">Erreur</a></li>
+      <% if (user) { %>
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/logout" class="btn-logout">Déconnexion</a></li>
+      <% } else { %>
+        <li><a href="/login">Login</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>
