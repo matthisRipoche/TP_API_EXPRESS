@@ -5,11 +5,20 @@ const {
     postLogin,
     logout,
 } = require("../controllers/AuthController");
+const { getDab, postDab } = require("../controllers/DabController");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
     res.render("index", { title: "Express" });
 });
+
+router.get("/about", function (req, res, next) {
+    res.render("about", { title: "About" });
+});
+
+router.get("/dab", getDab);
+
+router.post("/dab", postDab);
 
 // GET login page
 router.get("/login", getLogin);

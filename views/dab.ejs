@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <%- include ./parts/head %>
+  </head>
+
+  <body class="landing">
+    <%- include ./parts/header %>
+
+    <div class="dab-container">
+        <form action="/dab" method="POST">
+            <input type="number" name="amount" placeholder="Montant" required>
+            <select name="devise" id="">
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+            </select>
+            <button type="submit">Envoyer</button>
+        </form>
+
+        <div class="result">
+        <% if (result) { %>
+            <p>Montant : <strong><%= amount %></strong> <%= devise %></p>
+
+            <ul>
+            <% result.forEach(item => { %>
+                <li>
+                <%= item.count %> <%= item.type %>(s) de <%= item.value %><%= devise %>
+                </li>
+            <% }) %>
+            </ul>
+        <% } %>
+        </div>
+
+    </div>
+
+    <%- include ./parts/footer %>
+  </body>
+</html>
