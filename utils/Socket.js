@@ -1,12 +1,18 @@
 const { Server } = require("socket.io");
 
 module.exports = (server) => {
+    const allowedOrigins = [
+        "http://localhost:8080",
+        "https://tp-api.matthisripoche.com",
+    ];
+
     const io = new Server(server, {
         cors: {
-            origin: "http://localhost:8080",
+            origin: allowedOrigins,
             methods: ["GET", "POST"],
         },
     });
+
     // Stocker les utilisateurs connectés
     const users = new Map();
 
