@@ -1,20 +1,46 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <%- include('../parts/head') %>
-  </head>
-  <body class="client-detail-page">
-    <%- include('../parts/header') %>
+  <!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      <%- include ../parts/head %>
+    </head>
+    <body class="client-detail-page">
+      <%- include ../parts/header %>
 
-    <main class="client-detail">
-      <h1>Détail du client <%= client.name %></h1>
-      <p><strong>Email:</strong> <%= client.email %></p>
-      <p><strong>Balance:</strong> <%= client.balance.toLocaleString() %> €</p>
-      <p><strong>Type de compte:</strong> <%= client.accountType %></p>
-      <p><strong>Dernier login:</strong> <%= client.lastLogin %></p>
-      <p><strong>Status:</strong> <%= client.status %></p>
+      <main class="client-detail">
+        <div class="detail-card">
+          <div class="detail-header">
+            <h1><%= client.name %></h1>
+            <span class="status-badge <%= client.status.toLowerCase() %>"><%= client.status %></span>
+          </div>
+
+          <div class="detail-info">
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value email"><%= client.email %></span>
+            </div>
+          
+          <div class="info-item">
+            <span class="info-label">Balance</span>
+            <span class="info-value balance"><%= client.balance.toLocaleString() %> €</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-label">Type de compte</span>
+            <span class="info-value account-type"><%= client.accountType %></span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-label">Dernier login</span>
+            <span class="info-value"><%= client.lastLogin %></span>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <a href="/clients" class="btn btn-secondary">← Retour à la liste</a>
+        </div>
+      </div>
     </main>
 
-    <%- include('../parts/footer') %>
+    <%- include ../parts/footer %>
   </body>
 </html>

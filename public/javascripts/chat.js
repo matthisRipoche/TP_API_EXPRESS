@@ -54,9 +54,19 @@ usernameForm.addEventListener("submit", (e) => {
 // CHAT SOCKET.IO
 // =======================
 
-// Connexion réussie
 socket.on("connect", () => {
     console.log("Connecté au serveur !");
+});
+
+// Si on recupere l'historique des messages
+socket.on("chat:history", (messages) => {
+    messages.forEach((message) => {
+        addMessage(
+            message.author,
+            message.message,
+            message.author === username ? "sent" : "received"
+        );
+    });
 });
 
 // Réception d'un message

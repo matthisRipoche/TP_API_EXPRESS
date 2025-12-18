@@ -18,17 +18,25 @@ module.exports = (server) => {
 
     const users = new Map();
 
+    const ListeMessage = [];
+
     io.on("connection", (socket) => {
         socket.on("user:join", (data) => {
             const username = data.username;
             users.set(socket.id, username);
 
-            // Notifier tous les autres utilisateurs
+            socket.emit("chat:history", ListeMessage);
+
             socket.broadcast.emit("user:joined", { username });
         });
 
         socket.on("chat:message", (data) => {
-            const censoredMessage = censorExceptFirstLetter(data.message);
+            const censoredMessage = leoProfanity.clean(data.message);
+
+            ListeMessage.push({
+                author: data.author,
+                message: censoredMessage,
+            });
 
             io.emit("chat:message", {
                 author: data.author,
@@ -42,10 +50,8 @@ module.exports = (server) => {
             if (username) {
                 console.log(`🔴 ${username} a quitté le chat (${socket.id})`);
 
-                // Notifier tous les utilisateurs de la déconnexion
                 socket.broadcast.emit("user:left", { username });
 
-                // Retirer l'utilisateur de la liste
                 users.delete(socket.id);
             } else {
                 console.log("🔴 User disconnected :", socket.id);
@@ -55,20 +61,3 @@ module.exports = (server) => {
 
     return io;
 };
-
-function censorExceptFirstLetter(text) {
-    const dictionary = leoProfanity.list();
-
-    return text
-        .split(/\b/)
-        .map((word) => {
-            const lower = word.toLowerCase();
-
-            if (dictionary.includes(lower) && word.length > 1) {
-                return word[0] + "*".repeat(word.length - 1);
-            }
-
-            return word;
-        })
-        .join("");
-}
