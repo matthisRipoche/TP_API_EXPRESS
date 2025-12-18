@@ -23,5 +23,6 @@ jobs:
                   script: |
                       cd ${{ secrets.VPS_PATH }}
                       git pull origin main
+                      docker-compose run --rm api npm install
                       docker-compose down
                       docker-compose up -d --build
