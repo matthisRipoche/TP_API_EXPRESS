@@ -32,8 +32,12 @@ module.exports = (server) => {
         });
 
         socket.on("chat:message", (data) => {
-            data.message = leoProfanity.clean(data.message);
-            io.emit("chat:message", data);
+            const censoredMessage = censorExceptFirstLetter(data.message);
+
+            io.emit("chat:message", {
+                author: data.author,
+                message: censoredMessage,
+            });
         });
 
         socket.on("disconnect", () => {
@@ -55,3 +59,20 @@ module.exports = (server) => {
 
     return io;
 };
+
+function censorExceptFirstLetter(text) {
+    const dictionary = leoProfanity.list();
+
+    return text
+        .split(/\b/)
+        .map((word) => {
+            const lower = word.toLowerCase();
+
+            if (dictionary.includes(lower) && word.length > 1) {
+                return word[0] + "*".repeat(word.length - 1);
+            }
+
+            return word;
+        })
+        .join("");
+}
