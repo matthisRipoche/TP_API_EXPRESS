@@ -1,4 +1,7 @@
 const { Server } = require("socket.io");
+const leoProfanity = require("leo-profanity");
+leoProfanity.loadDictionary();
+leoProfanity.add(leoProfanity.getDictionary("fr"));
 
 module.exports = (server) => {
     const allowedOrigins = [
@@ -13,13 +16,11 @@ module.exports = (server) => {
         },
     });
 
-    // Stocker les utilisateurs connectés
     const users = new Map();
 
     io.on("connection", (socket) => {
         console.log("🟢 User connected :", socket.id);
 
-        // Quand un utilisateur rejoint avec son nom
         socket.on("user:join", (data) => {
             const username = data.username;
             users.set(socket.id, username);
@@ -30,12 +31,11 @@ module.exports = (server) => {
             socket.broadcast.emit("user:joined", { username });
         });
 
-        // Réception et diffusion des messages
         socket.on("chat:message", (data) => {
-            socket.broadcast.emit("chat:message", data);
+            data.message = leoProfanity.clean(data.message);
+            io.emit("chat:message", data);
         });
 
-        // Déconnexion
         socket.on("disconnect", () => {
             const username = users.get(socket.id);
 

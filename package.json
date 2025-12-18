@@ -8,6 +8,8 @@
     "sass": "sass --watch public/scss/style.scss public/stylesheets/style.css"
   },
   "dependencies": {
+    "@dsojevic/profanity-list": "^1.0.0",
+    "bad-words": "^4.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^17.2.3",
@@ -15,6 +17,7 @@
     "express": "~4.16.1",
     "express-session": "^1.18.2",
     "http-errors": "~1.6.3",
+    "leo-profanity": "^1.8.0",
     "morgan": "~1.9.1",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"

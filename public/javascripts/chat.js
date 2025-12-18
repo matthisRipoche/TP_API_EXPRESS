@@ -31,10 +31,11 @@ function hideUsernameModal() {
     usernameModal.style.display = "none";
 }
 
-// Affiche modal au lancement
 showUsernameModal();
 
-// Gestion formulaire pseudo
+/**
+ * Gestion du formulaire de pseudo
+ */
 usernameForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const name = usernameInput.value.trim();
@@ -78,14 +79,14 @@ socket.on("user:left", ({ username }) => {
 // =======================
 chatForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const message = chatInput.value.trim();
     if (!message) return;
 
-    // Affiche localement
-    addMessage(username, message, "sent");
-
-    // Envoie au serveur
-    socket.emit("chat:message", { author: username, message });
+    socket.emit("chat:message", {
+        author: username,
+        message,
+    });
 
     chatInput.value = "";
 });
