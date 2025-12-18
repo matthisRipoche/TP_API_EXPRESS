@@ -5,7 +5,12 @@
 // =======================
 // VARIABLES
 // =======================
-const socket = io("http://localhost:3000"); // ton serveur
+const SERVER_URL =
+    window.location.hostname === "localhost"
+        ? "http://localhost:3000"
+        : "https://tp-api.matthisripoche.com";
+
+const socket = io(SERVER_URL);
 const usernameModal = document.getElementById("usernameModal");
 const usernameForm = document.getElementById("usernameForm");
 const usernameInput = document.getElementById("usernameInput");
