@@ -1,0 +1,118 @@
+/* ===================== */
+/* CHAT CLIENT SOCKET.IO */
+/* ===================== */
+
+// =======================
+// VARIABLES
+// =======================
+const socket = io("http://localhost:3000"); // ton serveur
+const usernameModal = document.getElementById("usernameModal");
+const usernameForm = document.getElementById("usernameForm");
+const usernameInput = document.getElementById("usernameInput");
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatMessages = document.getElementById("chatMessages");
+
+let username = "";
+
+// =======================
+// MODAL USERNAME
+// =======================
+function showUsernameModal() {
+    usernameModal.style.display = "flex";
+}
+
+function hideUsernameModal() {
+    usernameModal.style.display = "none";
+}
+
+// Affiche modal au lancement
+showUsernameModal();
+
+// Gestion formulaire pseudo
+usernameForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = usernameInput.value.trim();
+    if (!name) return;
+
+    username = name;
+    hideUsernameModal();
+
+    // Envoie événement "user:join" au serveur
+    socket.emit("user:join", { username });
+
+    addSystemMessage(`Bienvenue ${username} !`);
+});
+
+// =======================
+// CHAT SOCKET.IO
+// =======================
+
+// Connexion réussie
+socket.on("connect", () => {
+    console.log("Connecté au serveur !");
+});
+
+// Réception d'un message
+socket.on("chat:message", ({ author, message }) => {
+    addMessage(author, message, author === username ? "sent" : "received");
+});
+
+// Système : utilisateur rejoint
+socket.on("user:joined", ({ username }) => {
+    addSystemMessage(`${username} a rejoint le chat`);
+});
+
+// Système : utilisateur quitté
+socket.on("user:left", ({ username }) => {
+    addSystemMessage(`${username} a quitté le chat`);
+});
+
+// =======================
+// ENVOI MESSAGE
+// =======================
+chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Affiche localement
+    addMessage(username, message, "sent");
+
+    // Envoie au serveur
+    socket.emit("chat:message", { author: username, message });
+
+    chatInput.value = "";
+});
+
+// =======================
+// FONCTIONS D'AFFICHAGE
+// =======================
+function addMessage(author, message, type = "received") {
+    const messageEl = document.createElement("div");
+    messageEl.classList.add("message", type);
+
+    messageEl.innerHTML = `
+    <div class="message-content">
+      <span class="author">${author}</span>
+      <p>${message}</p>
+    </div>
+  `;
+
+    chatMessages.appendChild(messageEl);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addSystemMessage(message) {
+    const messageEl = document.createElement("div");
+    messageEl.classList.add("message", "system");
+
+    messageEl.innerHTML = `
+    <div class="message-content">
+      <p>${message}</p>
+    </div>
+  `;
+
+    chatMessages.appendChild(messageEl);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}

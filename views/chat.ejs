@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include ./parts/head %>
+</head>
+
+    <body class="landing">
+        <%- include ./parts/header %>
+
+        <!-- USERNAME MODAL -->
+        <div class="username-modal" id="usernameModal">
+            <div class="username-modal-content">
+                <h2>👋 Bienvenue sur le chat !</h2>
+                <p>Entrez votre nom pour commencer</p>
+                <form id="usernameForm">
+                    <input 
+                        type="text" 
+                        id="usernameInput" 
+                        placeholder="Votre nom..." 
+                        autocomplete="off"
+                        required
+                        minlength="2"
+                        maxlength="20"
+                    />
+                    <button type="submit">Rejoindre le chat</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-card">
+                <!-- HEADER -->
+                <div class="chat-header">
+                <div class="chat-title">
+                    💬 Chat en temps futur
+                </div>
+                <span class="chat-status online">● En ligne</span>
+                </div>
+
+                <!-- MESSAGES -->
+                <div class="chat-messages" id="chatMessages">
+                <!-- Les messages apparaîtront ici dynamiquement -->
+                </div>
+
+            <!-- INPUT -->
+            <form class="chat-input" id="chatForm">
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Écris ton message..."
+                autocomplete="off"
+            />
+            <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include ./parts/footer %>
+    <script src="/socket.io.js"></script>
+    <script src="javascripts/chat.js"></script>
+  </body>
+</html>

@@ -4,6 +4,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session");
+const http = require("http");
+const { Server } = require("socket.io");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -12,11 +14,36 @@ var clientsRouter = require("./routes/clients");
 const isAuthenticated = require("./middlewares/isAuthenticated");
 
 var app = express();
+const server = http.createServer(app);
 
-// view engine setup
+// =======================
+// SOCKET.IO
+// =======================
+const initSocket = require("./utils/Socket");
+
+const io = initSocket(server);
+app.set("io", io);
+
+// Sert socket.io.js depuis node_modules
+app.get("/socket.io.js", (req, res) => {
+    res.sendFile(
+        path.join(
+            __dirname,
+            "node_modules",
+            "socket.io/client-dist/socket.io.js"
+        )
+    );
+});
+
+// =======================
+// VIEW ENGINE
+// =======================
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// =======================
+// MIDDLEWARES
+// =======================
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,30 +64,39 @@ app.use((req, res, next) => {
     next();
 });
 
+// =======================
+// ROUTES
+// =======================
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/clients", isAuthenticated, clientsRouter);
+
+// =======================
+// 404
+// =======================
 app.use((req, res) => {
     res.status(404).render("404", {
         title: "404 - Page introuvable",
     });
 });
 
-// Error handler
+// =======================
+// ERROR HANDLER
+// =======================
 app.use(function (err, req, res, next) {
-    // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
-
-    // Render the error page
     res.status(err.status || 500);
     res.render("error");
 });
 
+// =======================
+// SERVER
+// =======================
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+server.listen(PORT, () => {
+    console.log(`🚀 Server + Socket.io on http://localhost:${PORT}`);
 });
 
 module.exports = app;

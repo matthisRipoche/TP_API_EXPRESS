@@ -1,11 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const {
-    getLogin,
-    postLogin,
-    logout,
-} = require("../controllers/AuthController");
-const { getDab, postDab } = require("../controllers/DabController");
+const AuthController = require("../controllers/AuthController");
+const DabController = require("../controllers/DabController");
+const ChatController = require("../controllers/ChatController");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -16,17 +13,19 @@ router.get("/about", function (req, res, next) {
     res.render("about", { title: "About" });
 });
 
-router.get("/dab", getDab);
+router.get("/chat", ChatController.getChat);
 
-router.post("/dab", postDab);
+router.get("/dab", DabController.getDab);
+
+router.post("/dab", DabController.postDab);
 
 // GET login page
-router.get("/login", getLogin);
+router.get("/login", AuthController.getLogin);
 
 // POST login
-router.post("/login", postLogin);
+router.post("/login", AuthController.postLogin);
 
 // GET logout
-router.post("/logout", logout);
+router.post("/logout", AuthController.logout);
 
 module.exports = router;
