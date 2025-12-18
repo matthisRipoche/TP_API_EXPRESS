@@ -19,13 +19,9 @@ module.exports = (server) => {
     const users = new Map();
 
     io.on("connection", (socket) => {
-        console.log("🟢 User connected :", socket.id);
-
         socket.on("user:join", (data) => {
             const username = data.username;
             users.set(socket.id, username);
-
-            console.log(`👤 ${username} a rejoint le chat (${socket.id})`);
 
             // Notifier tous les autres utilisateurs
             socket.broadcast.emit("user:joined", { username });

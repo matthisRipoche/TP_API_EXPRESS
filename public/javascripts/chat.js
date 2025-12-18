@@ -98,12 +98,19 @@ function addMessage(author, message, type = "received") {
     const messageEl = document.createElement("div");
     messageEl.classList.add("message", type);
 
-    messageEl.innerHTML = `
-    <div class="message-content">
-      <span class="author">${author}</span>
-      <p>${message}</p>
-    </div>
-  `;
+    const content = document.createElement("div");
+    content.classList.add("message-content");
+
+    const authorEl = document.createElement("span");
+    authorEl.classList.add("author");
+    authorEl.textContent = author;
+
+    const messageElText = document.createElement("p");
+    messageElText.textContent = message;
+
+    content.appendChild(authorEl);
+    content.appendChild(messageElText);
+    messageEl.appendChild(content);
 
     chatMessages.appendChild(messageEl);
     chatMessages.scrollTop = chatMessages.scrollHeight;
