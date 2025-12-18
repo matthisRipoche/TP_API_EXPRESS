@@ -3,11 +3,11 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy only package files first (caching layer)
+# Copy package files first (caching layer)
 COPY package*.json ./
 
-# Install only prod dependencies
-RUN npm ci --only=production
+# Install all dependencies (prod + dev)
+RUN npm install
 
 # Copy rest of the app
 COPY . .
@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 3000
 
 # Run the app
-CMD ["node", "app.js"]
+CMD ["npm", "start"]
