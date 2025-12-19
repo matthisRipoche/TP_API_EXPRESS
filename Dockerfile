@@ -22,14 +22,6 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copier uniquement ce qui est nécessaire depuis le build
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/*.js ./
-COPY --from=builder /app/views ./views
-COPY --from=builder /app/public ./public
-
 # Expose port
 EXPOSE 3000
 
