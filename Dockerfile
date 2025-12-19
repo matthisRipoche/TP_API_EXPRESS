@@ -1,28 +1,22 @@
-# ==========================
-# Stage 1 : build
-# ==========================
-FROM node:20-alpine AS builder
+# Utiliser Node Alpine pour une image légère
+FROM node:20-alpine
 
+# Définir le dossier de travail dans le conteneur
 WORKDIR /app
 
-# Installer les dépendances
+# Copier package.json et package-lock.json pour installer les dépendances
 COPY package*.json ./
+
+# Installer toutes les dépendances
 RUN npm ci
 
-# Copier le reste des fichiers
+# Copier tout le reste de l'application
 COPY . .
 
 # Générer le client Prisma
 RUN npx prisma generate
 
-# ==========================
-# Stage 2 : production
-# ==========================
-FROM node:20-alpine
-
-WORKDIR /app
-
-# Expose port
+# Exposer le port utilisé par ton app
 EXPOSE 3000
 
 # Lancer l'application
