@@ -1,5 +1,5 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const AuthController = require("../controllers/AuthController");
 const DabController = require("../controllers/DabController");
 const ChatController = require("../controllers/ChatController");

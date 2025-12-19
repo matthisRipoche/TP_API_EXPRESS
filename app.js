@@ -1,20 +1,20 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var session = require("express-session");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const session = require("express-session");
 const http = require("http");
 const { Server } = require("socket.io");
 const methodOverride = require("method-override");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var clientsRouter = require("./routes/clients");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const clientsRouter = require("./routes/clients");
 
 const isAuthenticated = require("./middlewares/isAuthenticated");
 
-var app = express();
+const app = express();
 const server = http.createServer(app);
 
 // =======================
