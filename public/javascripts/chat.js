@@ -54,10 +54,6 @@ usernameForm.addEventListener("submit", (e) => {
 // CHAT SOCKET.IO
 // =======================
 
-socket.on("connect", () => {
-    console.log("Connecté au serveur !");
-});
-
 // Si on recupere l'historique des messages
 socket.on("chat:history", (messages) => {
     messages.forEach((message) => {

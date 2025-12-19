@@ -5,11 +5,11 @@ const DabController = require("../controllers/DabController");
 const ChatController = require("../controllers/ChatController");
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
     res.render("index", { title: "Express" });
 });
 
-router.get("/about", function (req, res, next) {
+router.get("/about", function (req, res) {
     res.render("about", { title: "About" });
 });
 
