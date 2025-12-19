@@ -3,7 +3,6 @@
 # ==========================
 FROM node:20-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
 # Installer les dépendances
@@ -23,11 +22,10 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copier uniquement les fichiers nécessaires depuis le build
+# Copier uniquement ce qui est nécessaire depuis le build
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/*.js ./
 COPY --from=builder /app/views ./views
 COPY --from=builder /app/public ./public
@@ -35,5 +33,5 @@ COPY --from=builder /app/public ./public
 # Expose port
 EXPOSE 3000
 
-# Run the app
+# Lancer l'application
 CMD ["node", "app.js"]
