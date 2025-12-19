@@ -8,17 +8,20 @@
 
   <main>
     <div class="clients-container">
+
+      <div class="top">
+        <h1>Gestion des Clients</h1>
+        <a href="/clients/create" class="btn-primary">Ajouter un client</a>
+      </div>
+      
       <table class="clients-table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Nom</th>
             <th>Email</th>
-            <th>Balance (€)</th>
-            <th>Type de compte</th>
-            <th>Dernier login</th>
-            <th>Status</th>
-            <th>Détails</th>
+            <th>Role</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -27,11 +30,12 @@
               <td><%= client.id %></td>
               <td><%= client.name %></td>
               <td><%= client.email %></td>
-              <td><%= client.balance.toLocaleString() %></td>
-              <td><%= client.accountType %></td>
-              <td><%= client.lastLogin %></td>
-              <td><%= client.status %></td>
-              <td><a href="/clients/<%= client.id %>" class="btn-detail">Voir</a></td>
+              <td><%= client.role %></td>
+              <td>
+                <a href="/clients/<%= client.id %>" class="btn-detail">Voir</a>
+                <a href="/clients/edit/<%= client.id %>" class="btn-edit">Modifier</a>
+                
+              </td>
             </tr>
           <% }) %>
         </tbody>
@@ -40,5 +44,6 @@
   </main>
 
   <%- include('../parts/footer') %>
+
 </body>
 </html>

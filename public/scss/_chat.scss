@@ -35,6 +35,9 @@
 
         .message-content {
             font-size: 0.9rem;
+            /* 🔥 FIX mots trop longs */
+            word-break: break-word;
+            overflow-wrap: anywhere;
 
             .author {
                 font-size: 0.7rem;
@@ -314,6 +317,7 @@
     .message {
         max-width: 75%;
         display: flex;
+        flex-wrap: wrap;
 
         &.sent {
             align-self: flex-end;
@@ -322,6 +326,8 @@
                 background: var(--violet);
                 color: var(--bg-dark);
                 box-shadow: 0 0 12px var(--violet);
+                max-width: 100%;
+                flex-wrap: wrap;
             }
         }
 
@@ -358,9 +364,14 @@
         padding: 0.75rem 1rem;
         border-radius: 12px;
         font-size: 0.95rem;
+        word-break: break-word;
+        overflow-wrap: anywhere;
 
         p {
             margin: 0;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
         }
 
         .author {

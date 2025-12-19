@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id                Int                 @id @default(autoincrement())
+  label             String?
+  course_categories course_categories[] @ignore
+}
+
+model certificates {
+  id            Int          @id @default(autoincrement())
+  enrollment_id Int?         @unique(map: "sqlite_autoindex_certificates_1")
+  issue_date    DateTime?
+  serial_number String?
+  enrollments   enrollments? @relation(fields: [enrollment_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model chapters {
+  id        Int      @id @default(autoincrement())
+  course_id Int?
+  title     String?
+  duration  Int?
+  courses   courses? @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model course_categories {
+  course_id   Int?
+  category_id Int?
+  categories  categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  courses     courses?    @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([course_id, category_id])
+  @@ignore
+}
+
+model courses {
+  id                Int                 @id @default(autoincrement())
+  title             String?
+  price             Float?
+  instructor_id     Int?
+  chapters          chapters[]
+  course_categories course_categories[] @ignore
+  users             users?              @relation(fields: [instructor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  enrollments       enrollments[]
+  reviews           reviews[]
+}
+
+model enrollments {
+  id           Int           @id @default(autoincrement())
+  user_id      Int?
+  course_id    Int?
+  date         DateTime?     @default(now())
+  certificates certificates?
+  courses      courses?      @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users        users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model reviews {
+  id        Int      @id @default(autoincrement())
+  user_id   Int?
+  course_id Int?
+  rating    Int?
+  comment   String?
+  courses   courses? @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users     users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id          Int           @id @default(autoincrement())
+  name        String?
+  email       String?       @unique(map: "sqlite_autoindex_users_1")
+  role        String?
+  courses     courses[]
+  enrollments enrollments[]
+  reviews     reviews[]
+}

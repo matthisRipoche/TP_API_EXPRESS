@@ -17,6 +17,15 @@ h1 {
     padding: 2rem;
 }
 
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .clients-table {
     width: 100%;
     border-collapse: collapse;
@@ -46,16 +55,74 @@ h1 {
     }
 }
 
-.btn-detail {
+.btn-detail,
+.btn-edit,
+.btn-delete {
     padding: 6px 12px;
     border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
+}
+
+.btn-detail {
+    background: #b974ff;
+    color: #0d0b14;
+
+    &:hover {
+        background: #d9a7ff;
+    }
+}
+
+.btn-edit {
+    background: #4a9eff;
+    color: #0d0b14;
+
+    &:hover {
+        background: #6bb3ff;
+        box-shadow: 0 0 10px rgba(107, 179, 255, 0.5);
+    }
+}
+
+.btn-delete {
+    background: #ff4c4c;
+    color: #fff;
+
+    &:hover {
+        background: #ff6b6b;
+        box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    border-radius: 8px;
     background: #b974ff;
     color: #0d0b14;
     font-weight: 600;
     text-decoration: none;
     transition: 0.3s;
+    box-shadow: 0 0 10px rgba(185, 116, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
 
     &:hover {
         background: #d9a7ff;
+        box-shadow: 0 0 15px rgba(217, 167, 255, 0.5);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
     }
 }

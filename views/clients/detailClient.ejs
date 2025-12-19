@@ -10,7 +10,6 @@
         <div class="detail-card">
           <div class="detail-header">
             <h1><%= client.name %></h1>
-            <span class="status-badge <%= client.status.toLowerCase() %>"><%= client.status %></span>
           </div>
 
           <div class="detail-info">
@@ -18,20 +17,11 @@
               <span class="info-label">Email</span>
               <span class="info-value email"><%= client.email %></span>
             </div>
-          
-          <div class="info-item">
-            <span class="info-label">Balance</span>
-            <span class="info-value balance"><%= client.balance.toLocaleString() %> €</span>
           </div>
           
           <div class="info-item">
-            <span class="info-label">Type de compte</span>
-            <span class="info-value account-type"><%= client.accountType %></span>
-          </div>
-          
-          <div class="info-item">
-            <span class="info-label">Dernier login</span>
-            <span class="info-value"><%= client.lastLogin %></span>
+            <span class="info-label">Rôle</span>
+            <span class="info-value account-type"><%= client.role %></span>
           </div>
         </div>
 

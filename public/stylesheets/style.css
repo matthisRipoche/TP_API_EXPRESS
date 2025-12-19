@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -444,6 +445,9 @@
   }
   .chat-container .message-content {
     font-size: 0.9rem;
+    /* 🔥 FIX mots trop longs */
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
   .chat-container .message-content .author {
     font-size: 0.7rem;
@@ -681,6 +685,7 @@
 .chat-container .message {
   max-width: 75%;
   display: flex;
+  flex-wrap: wrap;
 }
 .chat-container .message.sent {
   align-self: flex-end;
@@ -689,6 +694,8 @@
   background: var(--violet);
   color: var(--bg-dark);
   box-shadow: 0 0 12px var(--violet);
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 .chat-container .message.received {
   align-self: flex-start;
@@ -717,9 +724,14 @@
   padding: 0.75rem 1rem;
   border-radius: 12px;
   font-size: 0.95rem;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .chat-container .message-content p {
   margin: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
 .chat-container .message-content .author {
   display: block;
@@ -820,6 +832,15 @@ h1 {
   padding: 2rem;
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .clients-table {
   width: 100%;
   border-collapse: collapse;
@@ -845,17 +866,70 @@ h1 {
   background: rgba(185, 116, 255, 0.1);
 }
 
-.btn-detail {
+.btn-detail,
+.btn-edit,
+.btn-delete {
   padding: 6px 12px;
   border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-left: 5px;
+  border: none;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+}
+
+.btn-detail {
+  background: #b974ff;
+  color: #0d0b14;
+}
+.btn-detail:hover {
+  background: #d9a7ff;
+}
+
+.btn-edit {
+  background: #4a9eff;
+  color: #0d0b14;
+}
+.btn-edit:hover {
+  background: #6bb3ff;
+  box-shadow: 0 0 10px rgba(107, 179, 255, 0.5);
+}
+
+.btn-delete {
+  background: #ff4c4c;
+  color: #fff;
+}
+.btn-delete:hover {
+  background: #ff6b6b;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  transform: translateY(-1px);
+}
+.btn-delete:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  border-radius: 8px;
   background: #b974ff;
   color: #0d0b14;
   font-weight: 600;
   text-decoration: none;
   transition: 0.3s;
+  box-shadow: 0 0 10px rgba(185, 116, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
 }
-.btn-detail:hover {
+.btn-primary:hover {
   background: #d9a7ff;
+  box-shadow: 0 0 15px rgba(217, 167, 255, 0.5);
+  transform: translateY(-2px);
+}
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 /* ===================== */
