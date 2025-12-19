@@ -42,43 +42,52 @@ model course_categories {
 }
 
 model courses {
-  id                Int                 @id @default(autoincrement())
-  title             String?
-  price             Float?
-  instructor_id     Int?
-  chapters          chapters[]
+  id            Int           @id @default(autoincrement())
+  title         String?
+  price         Float?
+  instructor_id Int?
+  chapters      chapters[]
   course_categories course_categories[] @ignore
-  users             users?              @relation(fields: [instructor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  enrollments       enrollments[]
-  reviews           reviews[]
+
+  // Relation avec l'instructeur
+  instructor users? @relation("UserCourses", fields: [instructor_id], references: [id])
+
+  enrollments enrollments[]
+  reviews     reviews[]
 }
 
 model enrollments {
-  id           Int           @id @default(autoincrement())
-  user_id      Int?
-  course_id    Int?
-  date         DateTime?     @default(now())
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  course_id Int
+  date      DateTime @default(now())
+
+  // Relation vers l'utilisateur
+  user   users   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  // Relation vers le cours
+  course courses @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
   certificates certificates?
-  courses      courses?      @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users        users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model reviews {
   id        Int      @id @default(autoincrement())
-  user_id   Int?
-  course_id Int?
+  user_id   Int
+  course_id Int
   rating    Int?
   comment   String?
-  courses   courses? @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users     users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  user   users   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  course courses @relation(fields: [course_id], references: [id], onDelete: Cascade)
 }
 
 model users {
-  id          Int           @id @default(autoincrement())
-  name        String?
-  email       String?       @unique(map: "sqlite_autoindex_users_1")
-  role        String?
-  courses     courses[]
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String
+  role        String
   enrollments enrollments[]
   reviews     reviews[]
+  courses     courses[]    @relation("UserCourses") // relation vers les cours qu'ils enseignent
 }
+

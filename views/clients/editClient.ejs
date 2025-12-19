@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <%- include ../parts/head %>
+</head>
+<body class="clients-page">
+  <%- include ../parts/header %>
+
+  <main>
+    <div class="edit-client-container">
+      <div class="top">
+        <h1>Modifier un Client</h1>
+      </div>
+      
+      <form action="/clients/<%= client.id %>?_method=PUT" method="POST" class="client-form">
+        <div class="form-group">
+          <label for="name">Nom *</label>
+          <input type="text" id="name" name="name" required placeholder="Entrez le nom du client" value="<%= client.name %>">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required placeholder="client@example.com" value="<%= client.email %>">
+        </div>
+
+        <div class="form-group">
+          <label for="role">Rôle *</label>
+          <select id="role" name="role" required>
+            <option value="">Sélectionnez un rôle</option>
+            <option value="admin" <%= client.role === 'admin' ? 'selected' : '' %>>Administrateur</option>
+            <option value="user" <%= client.role === 'user' ? 'selected' : '' %>>Utilisateur</option>
+            <option value="client" <%= client.role === 'client' ? 'selected' : '' %>>Client</option>
+            <option value="moderator" <%= client.role === 'moderator' ? 'selected' : '' %>>Modérateur</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">Mettre à jour le client</button>
+          <a href="/clients" class="btn-cancel">Annuler</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <%- include ../parts/footer %>
+</body>
+</html>

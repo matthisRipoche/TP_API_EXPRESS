@@ -47,6 +47,8 @@ exports.showEditClient = async (req, res) => {
             where: { id },
         });
 
+        console.log(client);
+
         if (!client) {
             return res
                 .status(404)

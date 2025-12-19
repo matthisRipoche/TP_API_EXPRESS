@@ -1,8 +1,8 @@
 /* ===================== */
-/* ADD CLIENT PAGE */
+/* EDIT CLIENT PAGE */
 /* ===================== */
 
-.add-client-container {
+.edit-client-container {
     max-width: 600px;
     margin: 3rem auto;
     padding: 0 2rem;
@@ -142,13 +142,17 @@
 
 /* Responsive */
 @media screen and (max-width: 768px) {
-    .add-client-container {
+    .edit-client-container {
         margin: 2rem auto;
         padding: 0 1rem;
     }
 
     .client-form {
         padding: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 
     .form-actions {
@@ -164,6 +168,10 @@
 @media screen and (max-width: 480px) {
     .client-form {
         padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
     }
 
     .form-actions {

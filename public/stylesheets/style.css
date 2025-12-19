@@ -1129,6 +1129,316 @@ body.client-detail-page {
     gap: 0.75rem;
   }
 }
+/* ===================== */
+/* ADD CLIENT PAGE */
+/* ===================== */
+.add-client-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+.add-client-container .top {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.add-client-container .client-form {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(185, 116, 255, 0.2666666667);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 0 30px rgba(185, 116, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.add-client-container .client-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #b974ff, #d9a7ff);
+  border-radius: 16px 16px 0 0;
+}
+.add-client-container .form-group {
+  margin-bottom: 2rem;
+}
+.add-client-container .form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #e6e2ff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.add-client-container .form-group input[type=text],
+.add-client-container .form-group input[type=email],
+.add-client-container .form-group select {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(185, 116, 255, 0.3);
+  border-radius: 8px;
+  color: #e6e2ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.add-client-container .form-group input[type=text]:focus,
+.add-client-container .form-group input[type=email]:focus,
+.add-client-container .form-group select:focus {
+  outline: none;
+  border-color: #b974ff;
+  box-shadow: 0 0 10px rgba(185, 116, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+.add-client-container .form-group input[type=text]::placeholder,
+.add-client-container .form-group input[type=email]::placeholder,
+.add-client-container .form-group select::placeholder {
+  color: rgba(230, 226, 255, 0.4);
+}
+.add-client-container .form-group select {
+  cursor: pointer;
+}
+.add-client-container .form-group select option {
+  background: #0d0b14;
+  color: #e6e2ff;
+}
+.add-client-container .form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(185, 116, 255, 0.2);
+}
+.add-client-container .form-actions .btn-submit,
+.add-client-container .form-actions .btn-cancel {
+  flex: 1;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.25s ease;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.add-client-container .form-actions .btn-submit {
+  background: #b974ff;
+  color: #0d0b14;
+  box-shadow: 0 0 12px #b974ff;
+}
+.add-client-container .form-actions .btn-submit:hover {
+  background: #d9a7ff;
+  box-shadow: 0 0 18px #d9a7ff;
+  transform: translateY(-2px);
+}
+.add-client-container .form-actions .btn-submit:active {
+  transform: translateY(0);
+}
+.add-client-container .form-actions .btn-cancel {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e6e2ff;
+  border: 1px solid rgba(185, 116, 255, 0.2666666667);
+}
+.add-client-container .form-actions .btn-cancel:hover {
+  background: rgba(185, 116, 255, 0.1);
+  border-color: #b974ff;
+  transform: translateY(-2px);
+}
+.add-client-container .form-actions .btn-cancel:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .add-client-container {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .client-form {
+    padding: 2rem;
+  }
+  .form-actions {
+    flex-direction: column;
+  }
+  .form-actions .btn-submit,
+  .form-actions .btn-cancel {
+    flex: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .client-form {
+    padding: 1.5rem;
+  }
+  .form-actions {
+    gap: 0.75rem;
+  }
+}
+/* ===================== */
+/* EDIT CLIENT PAGE */
+/* ===================== */
+.edit-client-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+.edit-client-container .top {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.edit-client-container .client-form {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(185, 116, 255, 0.2666666667);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 0 30px rgba(185, 116, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.edit-client-container .client-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #b974ff, #d9a7ff);
+  border-radius: 16px 16px 0 0;
+}
+.edit-client-container .form-group {
+  margin-bottom: 2rem;
+}
+.edit-client-container .form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #e6e2ff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.edit-client-container .form-group input[type=text],
+.edit-client-container .form-group input[type=email],
+.edit-client-container .form-group select {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(185, 116, 255, 0.3);
+  border-radius: 8px;
+  color: #e6e2ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.edit-client-container .form-group input[type=text]:focus,
+.edit-client-container .form-group input[type=email]:focus,
+.edit-client-container .form-group select:focus {
+  outline: none;
+  border-color: #b974ff;
+  box-shadow: 0 0 10px rgba(185, 116, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+.edit-client-container .form-group input[type=text]::placeholder,
+.edit-client-container .form-group input[type=email]::placeholder,
+.edit-client-container .form-group select::placeholder {
+  color: rgba(230, 226, 255, 0.4);
+}
+.edit-client-container .form-group select {
+  cursor: pointer;
+}
+.edit-client-container .form-group select option {
+  background: #0d0b14;
+  color: #e6e2ff;
+}
+.edit-client-container .form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(185, 116, 255, 0.2);
+}
+.edit-client-container .form-actions .btn-submit,
+.edit-client-container .form-actions .btn-cancel {
+  flex: 1;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.25s ease;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.edit-client-container .form-actions .btn-submit {
+  background: #b974ff;
+  color: #0d0b14;
+  box-shadow: 0 0 12px #b974ff;
+}
+.edit-client-container .form-actions .btn-submit:hover {
+  background: #d9a7ff;
+  box-shadow: 0 0 18px #d9a7ff;
+  transform: translateY(-2px);
+}
+.edit-client-container .form-actions .btn-submit:active {
+  transform: translateY(0);
+}
+.edit-client-container .form-actions .btn-cancel {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e6e2ff;
+  border: 1px solid rgba(185, 116, 255, 0.2666666667);
+}
+.edit-client-container .form-actions .btn-cancel:hover {
+  background: rgba(185, 116, 255, 0.1);
+  border-color: #b974ff;
+  transform: translateY(-2px);
+}
+.edit-client-container .form-actions .btn-cancel:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .edit-client-container {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .client-form {
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .form-actions {
+    flex-direction: column;
+  }
+  .form-actions .btn-submit,
+  .form-actions .btn-cancel {
+    flex: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .client-form {
+    padding: 1.5rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  .form-actions {
+    gap: 0.75rem;
+  }
+}
 body {
   margin: 0;
   padding: 0;
