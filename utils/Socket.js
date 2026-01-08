@@ -18,29 +18,22 @@ module.exports = (server) => {
 
     const users = new Map();
 
-    const ListeMessage = [];
-
     io.on("connection", (socket) => {
         socket.on("user:join", (data) => {
             const username = data.username;
             users.set(socket.id, username);
 
-            socket.emit("chat:history", ListeMessage);
-
             socket.broadcast.emit("user:joined", { username });
         });
 
         socket.on("chat:message", (data) => {
+            // Nettoyer les gros mots mais conserver le HTML
             const censoredMessage = leoProfanity.clean(data.message);
-
-            ListeMessage.push({
-                author: data.author,
-                message: censoredMessage,
-            });
 
             io.emit("chat:message", {
                 author: data.author,
                 message: censoredMessage,
+                allowHtml: true, // Ajout d'un indicateur pour le frontend
             });
         });
 

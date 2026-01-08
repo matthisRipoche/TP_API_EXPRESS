@@ -100,6 +100,9 @@ chatForm.addEventListener("submit", (e) => {
 // =======================
 // FONCTIONS D'AFFICHAGE
 // =======================
+
+// Fonction pour autoriser uniquement les balises img et leurs attributs nécessaires
+
 function addMessage(author, message, type = "received") {
     const messageEl = document.createElement("div");
     messageEl.classList.add("message", type);
@@ -111,8 +114,11 @@ function addMessage(author, message, type = "received") {
     authorEl.classList.add("author");
     authorEl.textContent = author;
 
-    const messageElText = document.createElement("p");
-    messageElText.textContent = message;
+    const messageElText = document.createElement("div");
+    messageElText.classList.add("message-text");
+
+    // Nettoyer et insérer le message en autorisant uniquement les balises img
+    messageElText.innerHTML = message;
 
     content.appendChild(authorEl);
     content.appendChild(messageElText);
@@ -128,7 +134,7 @@ function addSystemMessage(message) {
 
     messageEl.innerHTML = `
     <div class="message-content">
-      <p>${message}</p>
+      ${message}
     </div>
   `;
 

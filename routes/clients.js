@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const clients = require("../data/clients");
 const ClientController = require("../controllers/ClientController");
 
 /* GET users listing. */
