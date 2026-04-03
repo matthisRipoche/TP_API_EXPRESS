@@ -26,7 +26,7 @@ exports.getTodo = async (req, res) => {
 };
 
 exports.createTodo = async (req, res) => {
-    const { title, description, completed } = req.body;
+    const { title, description, responsable, completed } = req.body;
 
     if (!title) {
         return res.status(400).json({ error: "Le titre est requis" });
@@ -36,6 +36,7 @@ exports.createTodo = async (req, res) => {
         const todo = await TodoService.createTodo({
             title,
             description: description || null,
+            responsable: responsable || null,
             completed: completed || false,
         });
         res.status(201).json(todo);
@@ -47,10 +48,10 @@ exports.createTodo = async (req, res) => {
 
 exports.updateTodo = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { title, description, completed } = req.body;
+    const { title, description, responsable, completed } = req.body;
 
     try {
-        const todo = await TodoService.updateTodo(id, { title, description, completed });
+        const todo = await TodoService.updateTodo(id, { title, description, responsable, completed });
         res.json(todo);
     } catch (error) {
         console.error(error);
