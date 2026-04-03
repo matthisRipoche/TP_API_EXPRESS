@@ -11,6 +11,7 @@ const methodOverride = require("method-override");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const clientsRouter = require("./routes/clients");
+const todosRouter = require("./routes/todos");
 
 const isAuthenticated = require("./middlewares/isAuthenticated");
 
@@ -73,6 +74,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/clients", isAuthenticated, clientsRouter);
+app.use("/api/todos", todosRouter);
 
 // =======================
 // 404

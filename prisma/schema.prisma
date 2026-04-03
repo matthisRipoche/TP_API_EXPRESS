@@ -91,3 +91,10 @@ model users {
   courses     courses[]    @relation("UserCourses") // relation vers les cours qu'ils enseignent
 }
 
+model todos {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}

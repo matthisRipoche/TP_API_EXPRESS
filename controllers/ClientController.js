@@ -1,8 +1,8 @@
-const prisma = require("../utils/prisma");
+const ClientService = require("../services/ClientService");
 
 exports.getListeClients = async (req, res) => {
     try {
-        const clients = await prisma.users.findMany();
+        const clients = await ClientService.getAllClients();
         res.render("clients/listClients", {
             title: "Liste des Clients",
             clients,
@@ -16,9 +16,7 @@ exports.getListeClients = async (req, res) => {
 exports.getClient = async (req, res) => {
     const id = parseInt(req.params.id);
     try {
-        const client = await prisma.users.findUnique({
-            where: { id },
-        });
+        const client = await ClientService.getClientById(id);
 
         if (!client) {
             return res
@@ -43,9 +41,7 @@ exports.showCreateClient = (req, res) => {
 exports.showEditClient = async (req, res) => {
     const id = parseInt(req.params.id);
     try {
-        const client = await prisma.users.findUnique({
-            where: { id },
-        });
+        const client = await ClientService.getClientById(id);
 
         console.log(client);
 
@@ -69,9 +65,7 @@ exports.createClient = async (req, res) => {
     const { name, email, role } = req.body;
 
     try {
-        const client = await prisma.users.create({
-            data: { name, email, role },
-        });
+        await ClientService.createClient({ name, email, role });
         res.redirect("/clients");
     } catch (error) {
         console.error(error);
@@ -84,10 +78,7 @@ exports.updateClient = async (req, res) => {
     const { name, email, role } = req.body;
 
     try {
-        const client = await prisma.users.update({
-            where: { id },
-            data: { name, email, role },
-        });
+        await ClientService.updateClient(id, { name, email, role });
         res.redirect(`/clients/${id}`);
     } catch (error) {
         console.error(error);
@@ -99,9 +90,7 @@ exports.deleteClient = async (req, res) => {
     const id = parseInt(req.params.id);
 
     try {
-        await prisma.users.delete({
-            where: { id },
-        });
+        await ClientService.deleteClient(id);
         res.redirect("/clients");
     } catch (error) {
         console.error(error);
