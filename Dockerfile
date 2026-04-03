@@ -19,5 +19,5 @@ RUN npx prisma generate
 # Exposer le port utilisé par ton app
 EXPOSE 3000
 
-# Lancer l'application
-CMD ["node", "app.js"]
+# Synchroniser la base de données et lancer l'application
+CMD ["sh", "-c", "npx prisma db push && node app.js"]
