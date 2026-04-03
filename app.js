@@ -7,6 +7,7 @@ const session = require("express-session");
 const http = require("http");
 const { Server } = require("socket.io");
 const methodOverride = require("method-override");
+const cors = require("cors");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -46,6 +47,29 @@ app.set("view engine", "ejs");
 // =======================
 // MIDDLEWARES = plugin
 // =======================
+
+// =======================
+// CORS
+// =======================
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://tp-vuejs.matthisripoche.com"
+];
+
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            // Autorise les requêtes sans origin (ex: Postman, curl)
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error(`CORS bloqué pour l'origin : ${origin}`));
+            }
+        },
+        credentials: true, // Nécessaire si tu envoies des cookies/sessions
+    })
+);
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
