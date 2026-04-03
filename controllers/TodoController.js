@@ -70,3 +70,13 @@ exports.deleteTodo = async (req, res) => {
         res.status(500).json({ error: "Erreur suppression todo" });
     }
 };
+
+exports.deleteAllTodos = async (req, res) => {
+    try {
+        await TodoService.deleteAllTodos();
+        res.json({ message: "Toutes les todos ont été supprimées avec succès" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erreur suppression toutes les todos" });
+    }
+}

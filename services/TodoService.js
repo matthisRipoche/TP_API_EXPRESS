@@ -29,6 +29,10 @@ class TodoService {
             where: { id },
         });
     }
+
+    static async deleteAllTodos() {
+        return await prisma.todos.deleteMany();
+    }
 }
 
 module.exports = TodoService;
